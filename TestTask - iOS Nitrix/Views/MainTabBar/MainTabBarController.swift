@@ -19,11 +19,18 @@ class MainTabBarController: UITabBarController {
   // MARK: - Methods
   private func createTabBarItems() {
     
+    //MARK: Movies List
+    let moviesListViewController = UIStoryboard(
+      name: "Main",
+      bundle: nil)
+      .instantiateViewController(identifier: "MoviesListViewController")
+    
     let moviesListTabBarItem = createTabBarItem(
-      rootController: MoviesListViewController(),
+      rootController: moviesListViewController,
       itemTitle: "Movies List",
       itemImage: "movieclapper")
     
+    //MARK: Favorites
     let favoritesTabBarItems = createTabBarItem(
       rootController: FavoritesViewController(),
       itemTitle: "Favorites",
