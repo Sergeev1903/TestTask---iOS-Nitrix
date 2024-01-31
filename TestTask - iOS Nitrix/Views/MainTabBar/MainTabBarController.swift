@@ -9,10 +9,12 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
   
+  // MARK: - Properties
+  let service = MoviesService()
+  
   // MARK: - Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     createTabBarItems()
   }
   
@@ -20,10 +22,13 @@ class MainTabBarController: UITabBarController {
   private func createTabBarItems() {
     
     // MARK: Movies List
-    let moviesListViewController = UIStoryboard(
+   let moviesListViewController = UIStoryboard(
       name: "Main",
       bundle: nil)
-      .instantiateViewController(identifier: "MoviesListViewController")
+    .instantiateViewController(
+      identifier: "MoviesListViewController") as MoviesListViewController
+
+    moviesListViewController.viewModel = MoviesListViewModel(service: service)
     
     let moviesListTabBarItem = createTabBarItem(
       rootController: moviesListViewController,
@@ -38,27 +43,5 @@ class MainTabBarController: UITabBarController {
     
     viewControllers = [moviesListTabBarItem, favoritesTabBarItems]
   }
-  
-}
-
-
-// MARK: - UITabBarController + Extension
-extension UITabBarController {
-  
-  func createTabBarItem(
-    rootController: UIViewController,
-    itemTitle: String,
-    itemImage: String) -> UIViewController {
-      
-      let navigationController = UINavigationController(
-        rootViewController: rootController)
-      
-      navigationController.tabBarItem.title = itemTitle
-      navigationController.tabBarItem.image = UIImage(systemName: itemImage)
-      navigationController.navigationBar.prefersLargeTitles = true
-      rootController.navigationItem.title = itemTitle
-      
-      return navigationController
-    }
   
 }

@@ -16,7 +16,6 @@ final class CollectionVerticalFlowLayout: UICollectionViewFlowLayout {
   private var interitemSpacing: CGFloat = 8
   private var heightMultiplier: CGFloat = 1.5
   
-  
   // MARK: - Init
   init(itemsPerRow: CGFloat, margin: CGFloat, lineSpacing: CGFloat,
        interitemSpacing: CGFloat, heightMultiplier: CGFloat) {
@@ -47,7 +46,6 @@ final class CollectionVerticalFlowLayout: UICollectionViewFlowLayout {
     print("Sorry! only code")
     return nil
   }
-  
   
   // MARK: - Methods
   override func prepare() {

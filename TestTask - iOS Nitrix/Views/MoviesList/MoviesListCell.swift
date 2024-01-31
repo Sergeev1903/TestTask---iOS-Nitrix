@@ -11,14 +11,19 @@ class MoviesListCell: UICollectionViewCell {
   
   // MARK: - Properties
   static let reuseId = String(describing: MoviesListCell.self)
+  private let posterImageView = UIImageView()
   
-   let posterImageView = UIImageView()
   
+  // MARK: - ViewModel
+  var viewModel: MoviesListCellViewModelProtocol! {
+    didSet {
+      configurePosterImageView()
+    }
+  }
   
   // MARK: - Init
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
     setUpPosterImageView()
   }
   
@@ -26,7 +31,6 @@ class MoviesListCell: UICollectionViewCell {
     print("Sorry! only code")
     return nil
   }
-  
   
   // MARK: - Methods
   override func prepareForReuse() {
@@ -50,4 +54,10 @@ class MoviesListCell: UICollectionViewCell {
     ])
   }
   
+  private func configurePosterImageView() {
+    posterImageView.load(url: viewModel.mediaPosterURL!)
+  }
+  
 }
+
+
