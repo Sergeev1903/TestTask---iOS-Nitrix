@@ -8,22 +8,50 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+  
+  // MARK: - Life cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
+    createTabBarItems()
+  }
+  
+  // MARK: - Methods
+  private func createTabBarItems() {
+    
+    let moviesListTabBarItem = createTabBarItem(
+      rootController: MoviesListViewController(),
+      itemTitle: "Movies List",
+      itemImage: "movieclapper")
+    
+    let favoritesTabBarItems = createTabBarItem(
+      rootController: FavoritesViewController(),
+      itemTitle: "Favorites",
+      itemImage: "heart")
+    
+    viewControllers = [moviesListTabBarItem, favoritesTabBarItems]
+  }
+  
+}
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+// MARK: - UITabBarController + Extension
+extension UITabBarController {
+  
+  func createTabBarItem(
+    rootController: UIViewController,
+    itemTitle: String,
+    itemImage: String) -> UIViewController {
+      
+      let navigationController = UINavigationController(
+        rootViewController: rootController)
+      
+      navigationController.tabBarItem.title = itemTitle
+      navigationController.tabBarItem.image = UIImage(systemName: itemImage)
+      navigationController.navigationBar.prefersLargeTitles = true
+      rootController.navigationItem.title = itemTitle
+      
+      return navigationController
     }
-    */
-
+  
 }
