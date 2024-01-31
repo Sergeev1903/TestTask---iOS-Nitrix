@@ -13,9 +13,9 @@ class MoviesListViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   
   // MARK: - ViewModel
-  var viewModel: MoviesListViewModelProtocol! {
+  var viewModel: MoviesListViewModelProtocol? {
     didSet {
-      viewModel.getMovies {
+      viewModel?.getMovies {
         self.collectionView.reloadData()
       }
     }
@@ -51,7 +51,7 @@ extension MoviesListViewController: UICollectionViewDataSource {
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
-      viewModel.numberOfItemsInSection()
+      viewModel?.numberOfItemsInSection() ?? 0
     }
   
   func collectionView(
@@ -61,12 +61,23 @@ extension MoviesListViewController: UICollectionViewDataSource {
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: MoviesListCell.reuseId,
         for: indexPath) as! MoviesListCell
-      cell.viewModel = viewModel.cellForItemAt(indexPath: indexPath)
+      cell.viewModel = viewModel?.cellForItemAt(indexPath: indexPath)
       return cell
     }
   
 }
 
 // MARK: - UICollectionViewDelegate
-extension MoviesListViewController: UICollectionViewDelegate {}
+extension MoviesListViewController: UICollectionViewDelegate {
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath) {
+      
+      guard let detailViewModel = viewModel?.didSelectItemAt(indexPath: indexPath) else { return }
+      let movieDetailVC = MovieDetailViewController(detailViewModel)
+      navigationController?.pushViewController(movieDetailVC, animated: true)
+  }
+  
+}
 

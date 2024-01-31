@@ -15,7 +15,7 @@ class MoviesListCell: UICollectionViewCell {
   
   
   // MARK: - ViewModel
-  var viewModel: MoviesListCellViewModelProtocol! {
+  var viewModel: MoviesListCellViewModelProtocol? {
     didSet {
       configurePosterImageView()
     }
@@ -55,7 +55,11 @@ class MoviesListCell: UICollectionViewCell {
   }
   
   private func configurePosterImageView() {
-    posterImageView.load(url: viewModel.mediaPosterURL!)
+    
+    guard let mediaPosterURL = viewModel?.mediaPosterURL else {
+      return
+    }
+    posterImageView.load(url: mediaPosterURL)
   }
   
 }

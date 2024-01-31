@@ -22,11 +22,13 @@ class MainTabBarController: UITabBarController {
   private func createTabBarItems() {
     
     // MARK: Movies List
-   let moviesListViewController = UIStoryboard(
+  guard let moviesListViewController = UIStoryboard(
       name: "Main",
       bundle: nil)
     .instantiateViewController(
-      identifier: "MoviesListViewController") as MoviesListViewController
+      identifier: "MoviesListViewController") as? MoviesListViewController else {
+    return
+  }
 
     moviesListViewController.viewModel = MoviesListViewModel(service: service)
     

@@ -6,3 +6,47 @@
 //
 
 import Foundation
+
+protocol MovieDetailViewModelProtocol {
+  var mediaTitle: String { get }
+  var mediaBackdropURL: URL? { get }
+  var mediaVoteAverage: String { get }
+  var mediaReleaseDate: String { get }
+  var mediaOverview: String { get }
+}
+
+class MovieDetailViewModel: MovieDetailViewModelProtocol {
+  
+  // MARK: - Properties
+  private let mediaItem: TMDBMovieResult
+  
+  var mediaTitle: String {
+    mediaItem.title ?? ""
+  }
+  
+  var mediaBackdropURL: URL? {
+    mediaItem.backdropURL
+  }
+  
+  var mediaVoteAverage: String {
+    mediaItem.voteAverage == 0 ? "New":
+    String(format: "%.1f", mediaItem.voteAverage!)
+  }
+  
+  var mediaReleaseDate: String {
+    mediaItem.releaseDate ?? ""
+  }
+  
+  var mediaOverview: String {
+    mediaItem.overview ?? ""
+  }
+  
+  // MARK: - Init
+  init(mediaItem: TMDBMovieResult) {
+    self.mediaItem = mediaItem
+  }
+  
+}
+
+
+

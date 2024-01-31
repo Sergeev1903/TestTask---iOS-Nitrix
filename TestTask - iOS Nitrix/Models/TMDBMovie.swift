@@ -26,8 +26,6 @@ struct TMDBMovieResult: Codable {
   let releaseDate: String?
   let voteAverage: Double?
   let overview: String?
-  let genres: [Genre]?
-  let videos: Videos?
   
   var posterURL: URL? {
     return URL(
@@ -37,34 +35,6 @@ struct TMDBMovieResult: Codable {
   var backdropURL: URL? {
     return URL(
       string: "https://image.tmdb.org/t/p/original\(backdropPath ?? "")")
-  }
-  
-}
-
-
-//MARK: - Genres
-struct Genres: Codable {
-  let genres: [Genre]
-}
-
-//MARK: - Genre
-struct Genre: Codable {
-  let id: Int
-  let name: String
-}
-
-// MARK: - Videos
-struct Videos: Codable {
-  let results: [Video]
-}
-
-// MARK: - Video
-struct Video: Codable {
-  let key: String
-  let name: String
-  let official: Bool
-  var keyURL: URL? {
-    return URL(string: "https://www.youtube.com/watch?v=\(key)")
   }
   
 }
