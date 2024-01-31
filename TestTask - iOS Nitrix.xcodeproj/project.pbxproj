@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DBB86192B6A8738002EDF4C /* MoviesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB86182B6A8738002EDF4C /* MoviesListCell.swift */; };
+		1DBB861C2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB861B2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift */; };
 		1DEB654F2B6A6ADD002BDE5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB654E2B6A6ADD002BDE5C /* AppDelegate.swift */; };
 		1DEB65512B6A6ADD002BDE5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB65502B6A6ADD002BDE5C /* SceneDelegate.swift */; };
 		1DEB65532B6A6ADD002BDE5C /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB65522B6A6ADD002BDE5C /* MoviesListViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DBB86182B6A8738002EDF4C /* MoviesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListCell.swift; sourceTree = "<group>"; };
+		1DBB861B2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVerticalFlowLayout.swift; sourceTree = "<group>"; };
 		1DEB654B2B6A6ADD002BDE5C /* TestTask - iOS Nitrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestTask - iOS Nitrix.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DEB654E2B6A6ADD002BDE5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DEB65502B6A6ADD002BDE5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DBB86132B6A80D7002EDF4C /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				1DEB65722B6A6F2F002BDE5C /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		1DBB86142B6A80F1002EDF4C /* MoviesList */ = {
+			isa = PBXGroup;
+			children = (
+				1DEB65522B6A6ADD002BDE5C /* MoviesListViewController.swift */,
+				1DBB86182B6A8738002EDF4C /* MoviesListCell.swift */,
+			);
+			path = MoviesList;
+			sourceTree = "<group>";
+		};
+		1DBB86152B6A8103002EDF4C /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				1DEB65702B6A6C01002BDE5C /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		1DBB861A2B6A8A96002EDF4C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1DBB861B2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		1DEB65422B6A6ADD002BDE5C = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +108,7 @@
 				1DEB65672B6A6B39002BDE5C /* ViewModels */,
 				1DEB656A2B6A6B67002BDE5C /* AppDelegates */,
 				1DEB656B2B6A6B7D002BDE5C /* Storyboards */,
+				1DBB861A2B6A8A96002EDF4C /* Helpers */,
 				1DEB655A2B6A6ADF002BDE5C /* Assets.xcassets */,
 				1DEB655F2B6A6ADF002BDE5C /* Info.plist */,
 				1DEB65572B6A6ADD002BDE5C /* TestTask___iOS_Nitrix.xcdatamodeld */,
@@ -89,9 +127,9 @@
 		1DEB65662B6A6B30002BDE5C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1DEB65722B6A6F2F002BDE5C /* MainTabBarController.swift */,
-				1DEB65522B6A6ADD002BDE5C /* MoviesListViewController.swift */,
-				1DEB65702B6A6C01002BDE5C /* FavoritesViewController.swift */,
+				1DBB86132B6A80D7002EDF4C /* MainTabBar */,
+				1DBB86142B6A80F1002EDF4C /* MoviesList */,
+				1DBB86152B6A8103002EDF4C /* Favorites */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +250,8 @@
 				1DEB65732B6A6F2F002BDE5C /* MainTabBarController.swift in Sources */,
 				1DEB65592B6A6ADD002BDE5C /* TestTask___iOS_Nitrix.xcdatamodeld in Sources */,
 				1DEB65712B6A6C01002BDE5C /* FavoritesViewController.swift in Sources */,
+				1DBB861C2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift in Sources */,
+				1DBB86192B6A8738002EDF4C /* MoviesListCell.swift in Sources */,
 				1DEB65512B6A6ADD002BDE5C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

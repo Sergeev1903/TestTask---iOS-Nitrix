@@ -8,5 +8,46 @@
 import UIKit
 
 class MoviesListCell: UICollectionViewCell {
+  
+  // MARK: - Properties
+  static let reuseId = String(describing: MoviesListCell.self)
+  
+   let posterImageView = UIImageView()
+  
+  
+  // MARK: - Init
+  override init(frame: CGRect) {
+    super.init(frame: frame)
     
+    setUpPosterImageView()
+  }
+  
+  required init?(coder: NSCoder) {
+    print("Sorry! only code")
+    return nil
+  }
+  
+  
+  // MARK: - Methods
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    posterImageView.image = nil
+  }
+  
+  private func setUpPosterImageView() {
+    posterImageView.contentMode = .scaleAspectFill
+    posterImageView.layer.cornerRadius = 10
+    posterImageView.layer.masksToBounds = true
+    posterImageView.translatesAutoresizingMaskIntoConstraints = false
+    
+    addSubview(posterImageView)
+    
+    NSLayoutConstraint.activate([
+      posterImageView.topAnchor.constraint(equalTo: topAnchor),
+      posterImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      posterImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      posterImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+    ])
+  }
+  
 }

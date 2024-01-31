@@ -9,47 +9,60 @@ import UIKit
 
 class MoviesListViewController: UIViewController {
   
-  
   //MARK: - Outlets
-  @IBOutlet weak var tableView: UITableView!
   
+  @IBOutlet weak var collectionView: UICollectionView!
+
   
   // MARK: - Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = .systemGreen
-    
-    setUpTableView()
+    setupCollectionView()
   }
   
   
   // MARK: - Methods
-  private func setUpTableView() {
-    tableView.delegate = self
-    tableView.dataSource = self
-  }
-  
-}
-
-
-// MARK: UITableViewDataSource
-extension MoviesListViewController: UITableViewDataSource {
-  
-  func tableView(
-    _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    10
-  }
-  
-  func tableView(
-    _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  private func setupCollectionView() {
     
-    return UITableViewCell()
+    let customLayout = CollectionVerticalFlowLayout(
+      itemsPerRow: 3, margin: 8, lineSpacing: 8,
+      interitemSpacing: 8, heightMultiplier: 1.5)
+    
+    collectionView.collectionViewLayout = customLayout
+    collectionView.delegate = self
+    collectionView.dataSource = self
+    collectionView.register(
+      MoviesListCell.self,
+      forCellWithReuseIdentifier: MoviesListCell.reuseId)
   }
   
 }
 
 
-// MARK: UITableViewDelegate
-extension MoviesListViewController: UITableViewDelegate {}
+// MARK: - UICollectionViewDataSource
+extension MoviesListViewController: UICollectionViewDataSource {
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int) -> Int {
+      20
+    }
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: MoviesListCell.reuseId, for: indexPath) as! MoviesListCell
+      cell.posterImageView.image = UIImage(named: "testImage")
+      return cell
+
+    }
+  
+}
+
+
+// MARK: - UICollectionViewDelegate
+extension MoviesListViewController: UICollectionViewDelegate {}
 

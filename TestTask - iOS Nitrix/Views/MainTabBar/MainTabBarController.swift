@@ -19,7 +19,7 @@ class MainTabBarController: UITabBarController {
   // MARK: - Methods
   private func createTabBarItems() {
     
-    //MARK: Movies List
+    // MARK: Movies List
     let moviesListViewController = UIStoryboard(
       name: "Main",
       bundle: nil)
@@ -30,7 +30,7 @@ class MainTabBarController: UITabBarController {
       itemTitle: "Movies List",
       itemImage: "movieclapper")
     
-    //MARK: Favorites
+    // MARK: Favorites
     let favoritesTabBarItems = createTabBarItem(
       rootController: FavoritesViewController(),
       itemTitle: "Favorites",
