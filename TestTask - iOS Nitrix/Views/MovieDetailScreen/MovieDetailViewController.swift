@@ -26,7 +26,7 @@ class MovieDetailViewController: UIViewController {
   }
   
   required init?(coder: NSCoder) {
-    print("Sorry! only code, no storyboards")
+    print("Sorry! only code")
     return nil
   }
   
@@ -44,14 +44,29 @@ class MovieDetailViewController: UIViewController {
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     tableView.translatesAutoresizingMaskIntoConstraints = false
     
+    tableView.tableHeaderView = createHeaderView()
+    
     view.addSubview(tableView)
     
     NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.topAnchor),
+      tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -50),
       tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
+  }
+  
+  private func createHeaderView() -> UIView {
+    let headerImageView = UIImageView(
+      frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 250))
+    headerImageView.contentMode = .scaleAspectFill
+    
+    guard let mediaBackdropURL = viewModel.mediaBackdropURL else {
+      return UIView()
+    }
+    // FIXME: - 
+    headerImageView.load(url: mediaBackdropURL)
+    return headerImageView
   }
 }
 
@@ -79,7 +94,7 @@ extension MovieDetailViewController: UITableViewDataSource {
       // FIXME: -
       switch indexPath.row {
       case 0:
-        cell.textLabel?.text = viewModel.mediaTitle
+        cell.textLabel?.text = viewModel.mediaTitleWithReleaseYear
       case 1:
         cell.textLabel?.text = viewModel.mediaVoteAverage
       case 2:
@@ -95,29 +110,4 @@ extension MovieDetailViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension MovieDetailViewController: UITableViewDelegate {
-  
-  func tableView(
-    _ tableView: UITableView,
-    heightForHeaderInSection section: Int) -> CGFloat {
-      80
-    }
-  
-  func tableView(
-    _ tableView: UITableView,
-    viewForHeaderInSection section: Int) -> UIView? {
-      
-      // FIXME: -
-      let headerImageView = UIImageView()
-      headerImageView.frame = CGRect(
-        x: 0, y: 0, width: tableView.bounds.width, height: 300)
-      headerImageView.contentMode = .scaleAspectFill
-      
-      guard let mediaBackdropURL = viewModel.mediaBackdropURL else {
-        return nil
-      }
-      headerImageView.load(url: mediaBackdropURL)
-      return headerImageView
-    }
-  
-}
+extension MovieDetailViewController: UITableViewDelegate {}

@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MovieDetailViewModelProtocol {
-  var mediaTitle: String { get }
   var mediaBackdropURL: URL? { get }
+  var mediaTitleWithReleaseYear: String { get }
   var mediaVoteAverage: String { get }
   var mediaReleaseDate: String { get }
   var mediaOverview: String { get }
@@ -20,12 +20,15 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
   // MARK: - Properties
   private let mediaItem: TMDBMovieResult
   
-  var mediaTitle: String {
-    mediaItem.title ?? ""
-  }
-  
   var mediaBackdropURL: URL? {
     mediaItem.backdropURL
+  }
+  
+  var mediaTitleWithReleaseYear: String {
+    guard let year = mediaItem.releaseDate?.components(separatedBy: "-") else {
+      return ""
+    }
+    return (mediaItem.title ?? "") + " (" + (year.first ?? "") + ")"
   }
   
   var mediaVoteAverage: String {
