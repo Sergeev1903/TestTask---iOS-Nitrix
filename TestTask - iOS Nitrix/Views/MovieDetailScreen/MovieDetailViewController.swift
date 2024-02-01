@@ -13,11 +13,7 @@ class MovieDetailViewController: UIViewController {
   private let tableView = UITableView()
   
   // MARK: - ViewModel
-  private var viewModel: MovieDetailViewModelProtocol {
-    didSet {
-      tableView.reloadData()
-    }
-  }
+  private var viewModel: MovieDetailViewModelProtocol
   
   // MARK: - Init
   init(_ viewModel: MovieDetailViewModelProtocol) {
@@ -34,6 +30,7 @@ class MovieDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setuptTableView()
+    configureViewModel()
   }
   
   // MARK: - Methods
@@ -68,6 +65,13 @@ class MovieDetailViewController: UIViewController {
     headerImageView.load(url: mediaBackdropURL)
     return headerImageView
   }
+  
+  private func configureViewModel() {
+    viewModel.getMovieDetails {
+      self.tableView.reloadData()
+    }
+  }
+  
 }
 
 // MARK: - UITableViewDataSource
@@ -76,7 +80,7 @@ extension MovieDetailViewController: UITableViewDataSource {
   func tableView(
     _ tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
-      4
+      5
     }
   
   func tableView(
@@ -92,10 +96,12 @@ extension MovieDetailViewController: UITableViewDataSource {
       case 0:
         cell.textLabel?.text = viewModel.mediaTitleWithReleaseYear
       case 1:
-        cell.textLabel?.text = viewModel.mediaVoteAverage
+        cell.textLabel?.text = viewModel.detailGenres
       case 2:
-        cell.textLabel?.text = viewModel.mediaReleaseDate
+        cell.textLabel?.text = viewModel.mediaVoteAverage
       case 3:
+        cell.textLabel?.text = viewModel.mediaReleaseDate
+      case 4:
         cell.textLabel?.text = viewModel.mediaOverview
       default:
         break
