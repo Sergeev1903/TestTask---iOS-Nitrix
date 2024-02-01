@@ -22,6 +22,7 @@
 		1D2DC4F42B6AD13300EBC5B4 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DC4F32B6AD13300EBC5B4 /* MovieDetailViewModel.swift */; };
 		1DBB86192B6A8738002EDF4C /* MoviesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB86182B6A8738002EDF4C /* MoviesListCell.swift */; };
 		1DBB861C2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB861B2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift */; };
+		1DCF873E2B6BE0860020BDDD /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF873D2B6BE0860020BDDD /* HUDView.swift */; };
 		1DEB654F2B6A6ADD002BDE5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB654E2B6A6ADD002BDE5C /* AppDelegate.swift */; };
 		1DEB65512B6A6ADD002BDE5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB65502B6A6ADD002BDE5C /* SceneDelegate.swift */; };
 		1DEB65532B6A6ADD002BDE5C /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB65522B6A6ADD002BDE5C /* MoviesListViewController.swift */; };
@@ -54,6 +55,7 @@
 		1D2DC4F32B6AD13300EBC5B4 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		1DBB86182B6A8738002EDF4C /* MoviesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListCell.swift; sourceTree = "<group>"; };
 		1DBB861B2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVerticalFlowLayout.swift; sourceTree = "<group>"; };
+		1DCF873D2B6BE0860020BDDD /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		1DEB654B2B6A6ADD002BDE5C /* TestTask - iOS Nitrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestTask - iOS Nitrix.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DEB654E2B6A6ADD002BDE5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DEB65502B6A6ADD002BDE5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				1DBB861B2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift */,
+				1DCF873D2B6BE0860020BDDD /* HUDView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				1D1BF5582B6A9FE600AC49A5 /* HTTPClient.swift in Sources */,
 				1DEB654F2B6A6ADD002BDE5C /* AppDelegate.swift in Sources */,
 				1D2DC4F42B6AD13300EBC5B4 /* MovieDetailViewModel.swift in Sources */,
+				1DCF873E2B6BE0860020BDDD /* HUDView.swift in Sources */,
 				1DEE05D32B6BA42700BF0B1D /* FavoritesCellViewModel.swift in Sources */,
 				1DEB65732B6A6F2F002BDE5C /* MainTabBarController.swift in Sources */,
 				1DEB65592B6A6ADD002BDE5C /* TestTask___iOS_Nitrix.xcdatamodeld in Sources */,

@@ -97,6 +97,17 @@ extension FavoritesViewController: UITableViewDelegate {
       let movieDetailVC = MovieDetailViewController(detailViewModel)
       navigationController?.pushViewController(movieDetailVC, animated: true)
     }
+  
+  
+  func tableView(
+    _ tableView: UITableView,
+    commit editingStyle: UITableViewCell.EditingStyle,
+    forRowAt indexPath: IndexPath) {
+//      if editingStyle == .delete {
+//          tableView.deleteRows(at: [indexPath], with: .automatic)
+//      }
+  }
+
 }
 
 
