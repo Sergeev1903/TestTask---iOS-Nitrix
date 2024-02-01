@@ -13,7 +13,6 @@ class MoviesListCell: UICollectionViewCell {
   static let reuseId = String(describing: MoviesListCell.self)
   private let posterImageView = UIImageView()
   
-  
   // MARK: - ViewModel
   var viewModel: MoviesListCellViewModelProtocol? {
     didSet {
@@ -55,7 +54,6 @@ class MoviesListCell: UICollectionViewCell {
   }
   
   private func configurePosterImageView() {
-    
     guard let mediaPosterURL = viewModel?.mediaPosterURL else {
       return
     }

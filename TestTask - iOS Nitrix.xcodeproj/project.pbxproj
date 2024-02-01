@@ -32,6 +32,10 @@
 		1DEB656D2B6A6BA3002BDE5C /* Тестове завдання iOS Nitrix.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB656C2B6A6BA3002BDE5C /* Тестове завдання iOS Nitrix.pdf */; };
 		1DEB65712B6A6C01002BDE5C /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB65702B6A6C01002BDE5C /* FavoritesViewController.swift */; };
 		1DEB65732B6A6F2F002BDE5C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB65722B6A6F2F002BDE5C /* MainTabBarController.swift */; };
+		1DEE05CD2B6BA26C00BF0B1D /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEE05CC2B6BA26C00BF0B1D /* FavoritesCell.swift */; };
+		1DEE05D12B6BA41800BF0B1D /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEE05D02B6BA41800BF0B1D /* FavoritesViewModel.swift */; };
+		1DEE05D32B6BA42700BF0B1D /* FavoritesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEE05D22B6BA42700BF0B1D /* FavoritesCellViewModel.swift */; };
+		1DEE05D52B6BA6C100BF0B1D /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEE05D42B6BA6C100BF0B1D /* UIView+Gradient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,10 @@
 		1DEB656C2B6A6BA3002BDE5C /* Тестове завдання iOS Nitrix.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Тестове завдання iOS Nitrix.pdf"; sourceTree = "<group>"; };
 		1DEB65702B6A6C01002BDE5C /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		1DEB65722B6A6F2F002BDE5C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		1DEE05CC2B6BA26C00BF0B1D /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
+		1DEE05D02B6BA41800BF0B1D /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		1DEE05D22B6BA42700BF0B1D /* FavoritesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCellViewModel.swift; sourceTree = "<group>"; };
+		1DEE05D42B6BA6C100BF0B1D /* UIView+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +115,7 @@
 			children = (
 				1D1BF5652B6AC7E200AC49A5 /* UIImageView+LoadImage.swift */,
 				1D1BF5672B6AC8AE00AC49A5 /* UITabBarController+Extension.swift */,
+				1DEE05D42B6BA6C100BF0B1D /* UIView+Gradient.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -149,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				1DEB65702B6A6C01002BDE5C /* FavoritesViewController.swift */,
+				1DEE05CC2B6BA26C00BF0B1D /* FavoritesCell.swift */,
 			);
 			path = FavoritesScreen;
 			sourceTree = "<group>";
@@ -220,7 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				1D2DC4F22B6AD10C00EBC5B4 /* MoviesList */,
-				1D2DC4F32B6AD13300EBC5B4 /* MovieDetailViewModel.swift */,
+				1DEE05CE2B6BA3CC00BF0B1D /* MovieDetail */,
+				1DEE05CF2B6BA3DD00BF0B1D /* Favorites */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -258,6 +269,23 @@
 				1DEB655C2B6A6ADF002BDE5C /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		1DEE05CE2B6BA3CC00BF0B1D /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1D2DC4F32B6AD13300EBC5B4 /* MovieDetailViewModel.swift */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		1DEE05CF2B6BA3DD00BF0B1D /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				1DEE05D02B6BA41800BF0B1D /* FavoritesViewModel.swift */,
+				1DEE05D22B6BA42700BF0B1D /* FavoritesCellViewModel.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,12 +366,14 @@
 				1D1BF5582B6A9FE600AC49A5 /* HTTPClient.swift in Sources */,
 				1DEB654F2B6A6ADD002BDE5C /* AppDelegate.swift in Sources */,
 				1D2DC4F42B6AD13300EBC5B4 /* MovieDetailViewModel.swift in Sources */,
+				1DEE05D32B6BA42700BF0B1D /* FavoritesCellViewModel.swift in Sources */,
 				1DEB65732B6A6F2F002BDE5C /* MainTabBarController.swift in Sources */,
 				1DEB65592B6A6ADD002BDE5C /* TestTask___iOS_Nitrix.xcdatamodeld in Sources */,
 				1DEB65712B6A6C01002BDE5C /* FavoritesViewController.swift in Sources */,
 				1D1BF5522B6A9F5200AC49A5 /* EndPoints.swift in Sources */,
 				1D1BF55F2B6AA0C600AC49A5 /* MovieService.swift in Sources */,
 				1D1BF5662B6AC7E200AC49A5 /* UIImageView+LoadImage.swift in Sources */,
+				1DEE05D52B6BA6C100BF0B1D /* UIView+Gradient.swift in Sources */,
 				1DBB861C2B6A8AC2002EDF4C /* CollectionVerticalFlowLayout.swift in Sources */,
 				1D1BF5632B6AB07F00AC49A5 /* MoviesListCellViewModel.swift in Sources */,
 				1D1BF5682B6AC8AE00AC49A5 /* UITabBarController+Extension.swift in Sources */,
@@ -352,7 +382,9 @@
 				1D2DC4F12B6AD0DD00EBC5B4 /* MovieDetailViewController.swift in Sources */,
 				1DEB65512B6A6ADD002BDE5C /* SceneDelegate.swift in Sources */,
 				1D1BF5542B6A9F8200AC49A5 /* HTTPMethod.swift in Sources */,
+				1DEE05D12B6BA41800BF0B1D /* FavoritesViewModel.swift in Sources */,
 				1D1BF5612B6AA23300AC49A5 /* MoviesListViewModel.swift in Sources */,
+				1DEE05CD2B6BA26C00BF0B1D /* FavoritesCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

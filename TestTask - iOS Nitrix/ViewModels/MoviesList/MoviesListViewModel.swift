@@ -15,7 +15,6 @@ protocol MoviesListViewModelProtocol {
   func didSelectItemAt(indexPath: IndexPath) -> MovieDetailViewModelProtocol
 }
 
-
 class MoviesListViewModel: MoviesListViewModelProtocol {
   
   // MARK: - Properties
@@ -46,7 +45,7 @@ class MoviesListViewModel: MoviesListViewModelProtocol {
     service.getMedia(
       endpoint: MovieEndpoint.nowPlaying(page: 1),
       responseModel: TMDBMovieResponse.self) { [weak self] result in
-        
+
         guard let strongSelf = self else { return }
         
         switch result {

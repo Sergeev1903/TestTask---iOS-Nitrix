@@ -29,7 +29,6 @@ class MoviesListViewController: UIViewController {
   
   // MARK: - Methods
   private func setupCollectionView() {
-    
     let customLayout = CollectionVerticalFlowLayout(
       itemsPerRow: 2, margin: 8, lineSpacing: 8,
       interitemSpacing: 8, heightMultiplier: 1.5)
@@ -44,7 +43,6 @@ class MoviesListViewController: UIViewController {
   
 }
 
-
 // MARK: - UICollectionViewDataSource
 extension MoviesListViewController: UICollectionViewDataSource {
   
@@ -57,7 +55,6 @@ extension MoviesListViewController: UICollectionViewDataSource {
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: MoviesListCell.reuseId,
         for: indexPath) as! MoviesListCell
@@ -73,7 +70,6 @@ extension MoviesListViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath) {
-      
       guard let detailViewModel = viewModel?.didSelectItemAt(indexPath: indexPath) else { return }
       let movieDetailVC = MovieDetailViewController(detailViewModel)
       navigationController?.pushViewController(movieDetailVC, animated: true)

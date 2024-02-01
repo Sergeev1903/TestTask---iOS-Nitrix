@@ -29,7 +29,6 @@ class MainTabBarController: UITabBarController {
       identifier: "MoviesListViewController") as? MoviesListViewController else {
     return
   }
-
     moviesListViewController.viewModel = MoviesListViewModel(service: service)
     
     let moviesListTabBarItem = createTabBarItem(
@@ -38,12 +37,14 @@ class MainTabBarController: UITabBarController {
       itemImage: "movieclapper")
     
     // MARK: Favorites
+    let favoritesViewController = FavoritesViewController(FavoritesViewModel(service: service))
+    
     let favoritesTabBarItems = createTabBarItem(
-      rootController: FavoritesViewController(),
+      rootController: favoritesViewController,
       itemTitle: "Favorites",
       itemImage: "heart")
     
-    viewControllers = [moviesListTabBarItem, favoritesTabBarItems]
+    viewControllers = [moviesListTabBarItem, favoritesTabBarItems ]
   }
   
 }

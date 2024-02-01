@@ -64,12 +64,11 @@ class MovieDetailViewController: UIViewController {
     guard let mediaBackdropURL = viewModel.mediaBackdropURL else {
       return UIView()
     }
-    // FIXME: - 
+    // FIXME: -
     headerImageView.load(url: mediaBackdropURL)
     return headerImageView
   }
 }
-
 
 // MARK: - UITableViewDataSource
 extension MovieDetailViewController: UITableViewDataSource {
@@ -83,15 +82,12 @@ extension MovieDetailViewController: UITableViewDataSource {
   func tableView(
     _ tableView: UITableView,
     cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      
       let cell = tableView.dequeueReusableCell(
         withIdentifier: "Cell", for: indexPath)
-      
       cell.selectionStyle = .none
       cell.textLabel?.numberOfLines = 0
       cell.textLabel?.textAlignment = .left
       
-      // FIXME: -
       switch indexPath.row {
       case 0:
         cell.textLabel?.text = viewModel.mediaTitleWithReleaseYear
