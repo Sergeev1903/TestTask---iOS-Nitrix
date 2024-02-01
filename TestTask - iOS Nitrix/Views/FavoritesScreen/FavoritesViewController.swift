@@ -31,9 +31,20 @@ class FavoritesViewController: UIViewController {
     super.viewDidLoad()
     setupTableView()
     configureViewModel()
+    configureNavigationBar()
   }
   
   // MARK: - Methods
+  override func setEditing(_ editing: Bool, animated: Bool) {
+      super.setEditing(editing, animated: animated)
+      tableView.setEditing(editing, animated: animated)
+  }
+  
+  private func configureNavigationBar() {
+    navigationItem.rightBarButtonItem = editButtonItem
+    navigationController?.navigationBar.prefersLargeTitles = false
+  }
+  
   private func setupTableView() {
     tableView.dataSource = self
     tableView.delegate = self
@@ -97,7 +108,6 @@ extension FavoritesViewController: UITableViewDelegate {
       let movieDetailVC = MovieDetailViewController(detailViewModel)
       navigationController?.pushViewController(movieDetailVC, animated: true)
     }
-  
   
   func tableView(
     _ tableView: UITableView,
