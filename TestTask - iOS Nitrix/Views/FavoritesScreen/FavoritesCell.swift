@@ -82,7 +82,7 @@ class FavoritesCell: UITableViewCell {
   private func setUpGradient() {
     backdropImageView.addGradientAddSublayer(
       gradientLayer,
-      colors: [.systemBackground.withAlphaComponent(0.5), .clear],
+      colors: [.black.withAlphaComponent(0.5), .clear],
       startPoint: .bottom,
       endPoint: .top)
   }
@@ -91,6 +91,7 @@ class FavoritesCell: UITableViewCell {
     titleLabel.numberOfLines = 0
     titleLabel.textAlignment = .center
     titleLabel.font = .boldSystemFont(ofSize: 18)
+    titleLabel.textColor = .white
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     
     containerView.addSubview(titleLabel)
