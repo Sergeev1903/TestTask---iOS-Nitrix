@@ -11,6 +11,8 @@ protocol MoviesServiceable {
   func getMedia<T: Codable>(
     endpoint: Endpoint, responseModel: T.Type,
     completion: @escaping (Result<T, RequestError>) -> Void)
+  func downloadImage(
+    from url: URL, completion: @escaping (Data?) -> Void)
 }
 
 struct MoviesService: HTTPClient, MoviesServiceable {
@@ -28,6 +30,18 @@ struct MoviesService: HTTPClient, MoviesServiceable {
         }
       }
     }
+  }
+  
+  // FIXME: -
+  func downloadImage(from url: URL, completion: @escaping (Data?) -> Void) {
+      URLSession.shared.dataTask(with: url) { data, response, error in
+          guard let data = data, error == nil else {
+              print("Error downloading image: \(error?.localizedDescription ?? "Unknown error")")
+              completion(nil)
+              return
+          }
+          completion(data)
+      }.resume()
   }
   
 }

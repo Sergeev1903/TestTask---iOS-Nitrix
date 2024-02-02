@@ -35,6 +35,7 @@ class MoviesListCell: UICollectionViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     posterImageView.image = nil
+    posterImageView.backgroundColor = .darkGray.withAlphaComponent(0.5)
   }
   
   private func setUpPosterImageView() {
@@ -54,10 +55,10 @@ class MoviesListCell: UICollectionViewCell {
   }
   
   private func configurePosterImageView() {
-    guard let mediaPosterURL = viewModel?.mediaPosterURL else {
+    guard let posterURL = viewModel?.movieItemPosterURL else {
       return
     }
-    posterImageView.load(url: mediaPosterURL)
+    posterImageView.load(url: posterURL)
   }
   
 }

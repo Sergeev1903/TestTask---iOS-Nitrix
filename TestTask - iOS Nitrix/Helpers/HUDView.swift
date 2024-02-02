@@ -56,10 +56,11 @@ final class HUDView: UIView {
     label.text = message
     alpha = 0
     
-    guard let topViewController = UIApplication.shared.windows.first?.rootViewController?.topMostViewController(),
-          let containerView = topViewController.view else {
-      return
-    }
+   guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+         let topViewController = windowScene.windows.first?.rootViewController?.topMostViewController(),
+         let containerView = topViewController.view else {
+     return
+   }
     
     containerView.addSubview(self)
     

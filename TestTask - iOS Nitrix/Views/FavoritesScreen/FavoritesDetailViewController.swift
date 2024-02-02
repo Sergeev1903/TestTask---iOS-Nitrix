@@ -1,22 +1,22 @@
 //
-//  MovieDetailViewController.swift
+//  FavoritesDetailViewController.swift
 //  TestTask - iOS Nitrix
 //
-//  Created by Артем Сергеев on 31.01.2024.
+//  Created by Артем Сергеев on 01.02.2024.
 //
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+class FavoritesDetailViewController: UIViewController {
   
   // MARK: - Properties
   private let tableView = UITableView()
   
   // MARK: - ViewModel
-  private var viewModel: MovieDetailViewModelProtocol
+  private var viewModel: FavoritesDetailViewModelProtocol?
   
   // MARK: - Init
-  init(_ viewModel: MovieDetailViewModelProtocol) {
+  init(_ viewModel: FavoritesDetailViewModelProtocol) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
@@ -29,12 +29,12 @@ class MovieDetailViewController: UIViewController {
   // MARK: - Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setuptTableView()
+    setUpTableView()
     configureViewModel()
   }
   
   // MARK: - Methods
-  private func setuptTableView() {
+  private func setUpTableView() {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.separatorStyle = .none
@@ -46,7 +46,7 @@ class MovieDetailViewController: UIViewController {
     view.addSubview(tableView)
     
     NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -50),
+      tableView.topAnchor.constraint(equalTo: view.topAnchor),
       tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -57,17 +57,17 @@ class MovieDetailViewController: UIViewController {
     let headerImageView = UIImageView(
       frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 250))
     headerImageView.contentMode = .scaleAspectFill
-    
-    guard let mediaBackdropURL = viewModel.mediaBackdropURL else {
+
+    // FIXME: -
+    guard let mediaBackdropImage = viewModel?.favoriteItemBackdropImage else {
       return UIView()
     }
-    // FIXME: -
-    headerImageView.load(url: mediaBackdropURL)
+    headerImageView.image = UIImage(data: mediaBackdropImage )
     return headerImageView
   }
   
   private func configureViewModel() {
-    viewModel.getMovieDetails {
+    viewModel?.getMovieDetails {
       self.tableView.reloadData()
     }
   }
@@ -75,7 +75,7 @@ class MovieDetailViewController: UIViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension MovieDetailViewController: UITableViewDataSource {
+extension FavoritesDetailViewController: UITableViewDataSource {
   
   func tableView(
     _ tableView: UITableView,
@@ -94,15 +94,15 @@ extension MovieDetailViewController: UITableViewDataSource {
       
       switch indexPath.row {
       case 0:
-        cell.textLabel?.text = viewModel.mediaTitleWithReleaseYear
+        cell.textLabel?.text = viewModel?.favoriteItemTitleWithReleaseYear
       case 1:
-        cell.textLabel?.text = viewModel.detailGenres
+        cell.textLabel?.text = viewModel?.favoriteItemGenres
       case 2:
-        cell.textLabel?.text = viewModel.mediaVoteAverage
+        cell.textLabel?.text = viewModel?.favoriteItemVoteAverage
       case 3:
-        cell.textLabel?.text = viewModel.mediaReleaseDate
+        cell.textLabel?.text = viewModel?.favoriteItemReleaseDate
       case 4:
-        cell.textLabel?.text = viewModel.mediaOverview
+        cell.textLabel?.text = viewModel?.favoriteItemOverview
       default:
         break
       }
@@ -112,4 +112,4 @@ extension MovieDetailViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension MovieDetailViewController: UITableViewDelegate {}
+extension FavoritesDetailViewController: UITableViewDelegate {}

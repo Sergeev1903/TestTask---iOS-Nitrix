@@ -8,21 +8,21 @@
 import Foundation
 
 protocol MoviesListCellViewModelProtocol {
-  var mediaPosterURL: URL? { get }
+  var movieItemPosterURL: URL? { get }
 }
 
 struct MoviesListCellViewModel: MoviesListCellViewModelProtocol {
   
   // MARK: - Properties
-  private let mediaItem: TMDBMovieResult
+  private let movieItem: TMDBMovieResult
   
-  var mediaPosterURL: URL? {
-    mediaItem.posterURL
+  var movieItemPosterURL: URL? {
+    movieItem.posterURL
   }
   
   // MARK: - Init
-  init(mediaItem: TMDBMovieResult) {
-    self.mediaItem = mediaItem
+  init(movieItem: TMDBMovieResult) {
+    self.movieItem = movieItem
   }
   
 }

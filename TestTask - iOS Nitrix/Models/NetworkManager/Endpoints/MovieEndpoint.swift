@@ -9,12 +9,10 @@ import Foundation
 
 enum MovieCategory: String, CaseIterable {
   case nowPlaying = "Now Playing"
-  case trending = "Trending"
 }
 
 enum MovieEndpoint {
   case nowPlaying(page: Int)
-  case trending(page: Int)
   case movieDetails(id: Int)
 }
 
@@ -25,8 +23,6 @@ extension MovieEndpoint: Endpoint {
     switch self {
     case .nowPlaying:
       return "/3/movie/now_playing"
-    case .trending:
-      return "/3/trending/movie/day"
     case .movieDetails(id: let id):
       return "/3/movie/\(id)"
     }
@@ -34,14 +30,14 @@ extension MovieEndpoint: Endpoint {
   
   var method: RequestMethod {
     switch self {
-    case .nowPlaying, .trending, .movieDetails:
+    case .nowPlaying, .movieDetails:
       return .get
     }
   }
   
   var header: [String: String]? {
     switch self {
-    case .nowPlaying, .trending, .movieDetails:
+    case .nowPlaying, .movieDetails:
       return [
         "Authorization": "Bearer \(accessToken)",
         "Content-Type": "application/json;charset=utf-8"
@@ -51,7 +47,7 @@ extension MovieEndpoint: Endpoint {
   
   var queryItems: [URLQueryItem]? {
     switch self {
-    case .nowPlaying(let page), .trending(let page):
+    case .nowPlaying(let page):
       return [URLQueryItem(name: "page", value: "\(page)")]
       
     case .movieDetails:
@@ -61,7 +57,7 @@ extension MovieEndpoint: Endpoint {
   
   var body: [String : Any]? {
     switch self {
-    case .nowPlaying, .trending, .movieDetails:
+    case .nowPlaying, .movieDetails:
       return nil
     }
   }

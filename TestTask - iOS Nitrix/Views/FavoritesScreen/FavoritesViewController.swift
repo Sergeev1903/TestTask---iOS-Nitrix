@@ -13,7 +13,7 @@ class FavoritesViewController: UIViewController {
   private let tableView = UITableView()
   
   // MARK: - ViewModel
-  private var viewModel: FavoritesViewModelProtocol
+  private var viewModel: FavoritesViewModelProtocol?
   
   // MARK: - Init
   init(_ viewModel: FavoritesViewModelProtocol) {
@@ -29,15 +29,28 @@ class FavoritesViewController: UIViewController {
   // MARK: - Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupTableView()
-    configureViewModel()
+    setUpTableView()
     configureNavigationBar()
+    configureViewModel()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    configureViewModel()
   }
   
   // MARK: - Methods
   override func setEditing(_ editing: Bool, animated: Bool) {
-      super.setEditing(editing, animated: animated)
-      tableView.setEditing(editing, animated: animated)
+    super.setEditing(editing, animated: animated)
+    tableView.setEditing(editing, animated: animated)
+  }
+  
+  private func configureViewModel() {
+    viewModel?.fetchAllMoviesFromCoreData {
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
+      }
+    }
   }
   
   private func configureNavigationBar() {
@@ -45,7 +58,7 @@ class FavoritesViewController: UIViewController {
     navigationController?.navigationBar.prefersLargeTitles = false
   }
   
-  private func setupTableView() {
+  private func setUpTableView() {
     tableView.dataSource = self
     tableView.delegate = self
     tableView.separatorStyle = .none
@@ -63,12 +76,6 @@ class FavoritesViewController: UIViewController {
     ])
   }
   
-  private func configureViewModel() {
-    viewModel.getMovies {
-      self.tableView.reloadData()
-    }
-  }
-  
 }
 
 // MARK: - UITableViewDataSource
@@ -77,7 +84,7 @@ extension FavoritesViewController: UITableViewDataSource {
   func tableView(
     _ tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
-      viewModel.numberOfRowsInSection()
+      viewModel?.numberOfRowsInSection() ?? 0
     }
   
   func tableView(
@@ -85,7 +92,7 @@ extension FavoritesViewController: UITableViewDataSource {
     cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(
         withIdentifier: FavoritesCell.reuseId, for: indexPath) as! FavoritesCell
-      cell.viewModel = viewModel.cellForRowAt(indexPath: indexPath)
+      cell.viewModel = viewModel?.cellForRowAt(indexPath: indexPath)
       return cell
     }
   
@@ -104,20 +111,24 @@ extension FavoritesViewController: UITableViewDelegate {
   func tableView(
     _ tableView: UITableView,
     didSelectRowAt indexPath: IndexPath) {
-      let detailViewModel = viewModel.didSelectItemAt(indexPath: indexPath)
-      let movieDetailVC = MovieDetailViewController(detailViewModel)
-      navigationController?.pushViewController(movieDetailVC, animated: true)
+      guard let detailViewModel = viewModel?.didSelectRowAt(indexPath: indexPath) else {
+        return
+      }
+      let favoriteDetailVC = FavoritesDetailViewController(detailViewModel)
+      navigationController?.pushViewController(favoriteDetailVC, animated: true)
     }
   
   func tableView(
     _ tableView: UITableView,
     commit editingStyle: UITableViewCell.EditingStyle,
     forRowAt indexPath: IndexPath) {
-//      if editingStyle == .delete {
-//          tableView.deleteRows(at: [indexPath], with: .automatic)
-//      }
-  }
-
+      if editingStyle == .delete {
+        viewModel?.deleteMovieFromCoreData(indexPath: indexPath)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+      }
+    }
+  
+  
 }
 
 

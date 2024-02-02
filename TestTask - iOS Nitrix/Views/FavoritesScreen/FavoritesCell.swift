@@ -13,12 +13,12 @@ class FavoritesCell: UITableViewCell {
   static let reuseId = String(describing: FavoritesCell.self)
   
   private let containerView = UIView()
-  private let mediaImageView = UIImageView()
-  private let gradient = CAGradientLayer()
-  private let mediaTitle = UILabel()
+  private let backdropImageView = UIImageView()
+  private let gradientLayer = CAGradientLayer()
+  private let titleLabel = UILabel()
   
   // MARK: - ViewModel
-  var viewModel: FavoritesCellViewModelProtocol! {
+  var viewModel: FavoritesCellViewModelProtocol? {
     didSet {
       configureFavoritesCell()
     }
@@ -27,9 +27,9 @@ class FavoritesCell: UITableViewCell {
   // MARK: - Init
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    setupContainerView()
-    setupMediaImageView()
-    setupMediaTitle()
+    setUpContainerView()
+    setUpMediaImageView()
+    setUpMediaTitle()
   }
   
   required init?(coder: NSCoder) {
@@ -40,18 +40,18 @@ class FavoritesCell: UITableViewCell {
   // MARK: - Methods
   override func draw(_ rect: CGRect) {
     super.draw(rect)
-    setupGradient()
+    setUpGradient()
   }
   
   override func prepareForReuse() {
     super.prepareForReuse()
-    mediaImageView.image = nil
-    mediaTitle.text = nil
-    mediaImageView.backgroundColor = .darkGray.withAlphaComponent(0.5)
+    backdropImageView.image = nil
+    titleLabel.text = nil
+    backdropImageView.backgroundColor = .darkGray.withAlphaComponent(0.5)
   }
   
   // MARK: - Methods
-  private func setupContainerView() {
+  private func setUpContainerView() {
     backgroundColor = .clear
     selectionStyle = .none
     
@@ -70,49 +70,49 @@ class FavoritesCell: UITableViewCell {
     ])
   }
   
-  private func setupMediaImageView() {
-    mediaImageView.contentMode = .scaleAspectFill
-    mediaImageView.layer.cornerRadius = 10
-    mediaImageView.layer.masksToBounds = true
-    mediaImageView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+  private func setUpMediaImageView() {
+    backdropImageView.contentMode = .scaleAspectFill
+    backdropImageView.layer.cornerRadius = 10
+    backdropImageView.layer.masksToBounds = true
+    backdropImageView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     
-    containerView.addSubview(mediaImageView)
+    containerView.addSubview(backdropImageView)
   }
   
-  private func setupGradient() {
-    mediaImageView.addGradientAddSublayer(
-      gradient,
+  private func setUpGradient() {
+    backdropImageView.addGradientAddSublayer(
+      gradientLayer,
       colors: [.systemBackground.withAlphaComponent(0.5), .clear],
       startPoint: .bottom,
       endPoint: .top)
   }
   
-  private func setupMediaTitle() {
-    mediaTitle.numberOfLines = 0
-    mediaTitle.textAlignment = .center
-    mediaTitle.font = .boldSystemFont(ofSize: 18)
-    mediaTitle.translatesAutoresizingMaskIntoConstraints = false
+  private func setUpMediaTitle() {
+    titleLabel.numberOfLines = 0
+    titleLabel.textAlignment = .center
+    titleLabel.font = .boldSystemFont(ofSize: 18)
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
     
-    containerView.addSubview(mediaTitle)
+    containerView.addSubview(titleLabel)
     
     NSLayoutConstraint.activate([
-      mediaTitle.topAnchor.constraint(
+      titleLabel.topAnchor.constraint(
         equalTo: containerView.centerYAnchor),
-      mediaTitle.leadingAnchor.constraint(
+      titleLabel.leadingAnchor.constraint(
         equalTo: containerView.leadingAnchor),
-      mediaTitle.bottomAnchor.constraint(
+      titleLabel.bottomAnchor.constraint(
         equalTo: containerView.bottomAnchor),
-      mediaTitle.trailingAnchor.constraint(
+      titleLabel.trailingAnchor.constraint(
         equalTo: containerView.trailingAnchor)
     ])
   }
   
   private func configureFavoritesCell() {
-    guard let mediaBackdropURL = viewModel.mediaBackdropURL else {
+    guard let backdropImage = viewModel?.favoriteItemBackdropImage else {
       return
     }
-    mediaImageView.load(url: mediaBackdropURL )
-    mediaTitle.text = viewModel.mediaTitleWithReleaseYear
+    backdropImageView.image = UIImage(data: backdropImage)
+    titleLabel.text = viewModel?.favoriteItemTitleWithReleaseYear
     }
   }
 

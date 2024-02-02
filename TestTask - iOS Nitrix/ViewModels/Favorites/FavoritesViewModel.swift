@@ -8,55 +8,54 @@
 import Foundation
 
 protocol FavoritesViewModelProtocol {
+  var favoriteItems: [MovieEntity] { get set }
   func numberOfRowsInSection() -> Int
-  func cellForRowAt(indexPath: IndexPath) -> FavoritesCellViewModelProtocol
-  func didSelectItemAt(indexPath: IndexPath) -> MovieDetailViewModelProtocol
-  
-  // TEST
-  func getMovies(completion: @escaping () -> Void)
+  func cellForRowAt(
+    indexPath: IndexPath) -> FavoritesCellViewModelProtocol
+  func didSelectRowAt(
+    indexPath: IndexPath) -> FavoritesDetailViewModelProtocol
+  func fetchAllMoviesFromCoreData(
+    completion: @escaping () -> Void)
+  func deleteMovieFromCoreData(indexPath: IndexPath)
 }
 
 class FavoritesViewModel: FavoritesViewModelProtocol {
   
   // MARK: - Properties
-  private let service: MoviesServiceable
-  private var favoritesItems: [TMDBMovieResult] = []
+  private let coreDataManager = CoreDataManager.shared
+  public var favoriteItems: [MovieEntity] = []
   
   // MARK: - Init
-  init(service: MoviesServiceable) {
-    self.service = service
-  }
+  init() {}
   
   // MARK: - Methods
-  func numberOfRowsInSection() -> Int {
-    favoritesItems.count
+  public func numberOfRowsInSection() -> Int {
+    favoriteItems.count
   }
   
-  func cellForRowAt(indexPath: IndexPath) -> FavoritesCellViewModelProtocol {
-    let mediaItem = favoritesItems[indexPath.row]
-    return FavoritesCellViewModel(mediaItem: mediaItem)
-  }
+  public func cellForRowAt(
+    indexPath: IndexPath) -> FavoritesCellViewModelProtocol {
+      let favoriteItem = favoriteItems[indexPath.row]
+      return FavoritesCellViewModel(favoriteItem: favoriteItem)
+    }
   
-  func didSelectItemAt(indexPath: IndexPath) -> MovieDetailViewModelProtocol {
-    let mediaItem = favoritesItems[indexPath.item]
-    return MovieDetailViewModel(mediaItem: mediaItem)
-  }
+  public func didSelectRowAt(
+    indexPath: IndexPath) -> FavoritesDetailViewModelProtocol {
+      let favoriteItem = favoriteItems[indexPath.row]
+      return FavoritesDetailViewModel(favoriteItem: favoriteItem)
+    }
   
-  public func getMovies(completion: @escaping () -> Void) {
-    service.getMedia(
-      endpoint: MovieEndpoint.trending(page: 1),
-      responseModel: TMDBMovieResponse.self) { [weak self] result in
-        
-        guard let strongSelf = self else { return }
-        
-        switch result {
-        case .success(let response):
-          strongSelf.favoritesItems = response.results
-        case .failure(let error):
-          print(error.message)
-        }
-        completion()
-      }
+  // MARK: Persistence
+  public func fetchAllMoviesFromCoreData(
+    completion: @escaping () -> Void) {
+      favoriteItems = coreDataManager.fetchAllMovies()
+      completion()
+    }
+  
+  public func deleteMovieFromCoreData(indexPath: IndexPath) {
+    let movieToDelete = favoriteItems[indexPath.row]
+    coreDataManager.delete(movieEntity: movieToDelete)
+    favoriteItems.remove(at: indexPath.row)
   }
 }
 

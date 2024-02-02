@@ -10,7 +10,7 @@ import UIKit
 class MainTabBarController: UITabBarController {
   
   // MARK: - Properties
-  let service = MoviesService()
+  private let service = MoviesService()
   
   // MARK: - Life cycle
   override func viewDidLoad() {
@@ -37,7 +37,7 @@ class MainTabBarController: UITabBarController {
       itemImage: "movieclapper")
     
     // MARK: Favorites
-    let favoritesViewController = FavoritesViewController(FavoritesViewModel(service: service))
+    let favoritesViewController = FavoritesViewController(FavoritesViewModel())
     
     let favoritesTabBarItems = createTabBarItem(
       rootController: favoritesViewController,

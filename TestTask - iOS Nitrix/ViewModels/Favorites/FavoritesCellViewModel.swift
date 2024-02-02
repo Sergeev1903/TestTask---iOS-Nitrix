@@ -8,37 +8,36 @@
 import Foundation
 
 protocol FavoritesCellViewModelProtocol {
-  var mediaBackdropURL: URL? { get }
-  var mediaTitleWithReleaseYear: String { get }
-  var mediaTitle: String { get }
-  var mediaReleaseYear: String { get }
+  var favoriteItemBackdropImage: Data? { get }
+  var favoriteItemTitleWithReleaseYear: String { get }
+  var favoriteItemTitle: String { get }
+  var favoriteItemReleaseYear: String { get }
 }
 
 class FavoritesCellViewModel: FavoritesCellViewModelProtocol {
   
   // MARK: - Properties
-  private let mediaItem: TMDBMovieResult
+  private let favoriteItem: MovieEntity
   
-  var mediaBackdropURL: URL? {
-    mediaItem.backdropURL
+  var favoriteItemBackdropImage: Data? {
+    favoriteItem.backdropImage
   }
   
-  var mediaTitle: String {
-    mediaItem.title ?? ""
+  var favoriteItemTitle: String {
+    favoriteItem.tittle ?? ""
   }
   
-  var mediaReleaseYear: String {
-    let year = mediaItem.releaseDate?.components(separatedBy: "-")
+  var favoriteItemReleaseYear: String {
+    let year = favoriteItem.releaseDate?.components(separatedBy: "-")
     return year?.first ?? ""
   }
   
-  var mediaTitleWithReleaseYear: String {
-    mediaTitle + "\n" + mediaReleaseYear
+  var favoriteItemTitleWithReleaseYear: String {
+    favoriteItemTitle + "\n" + favoriteItemReleaseYear
   }
   
-  
   // MARK: - Init
-  init(mediaItem: TMDBMovieResult) {
-    self.mediaItem = mediaItem
+  init(favoriteItem: MovieEntity) {
+    self.favoriteItem = favoriteItem
   }
 }
