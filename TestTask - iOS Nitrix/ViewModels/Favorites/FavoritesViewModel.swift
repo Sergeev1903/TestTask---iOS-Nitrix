@@ -19,6 +19,7 @@ protocol FavoritesViewModelProtocol {
   func deleteMovieFromCoreData(indexPath: IndexPath)
 }
 
+
 class FavoritesViewModel: FavoritesViewModelProtocol {
   
   // MARK: - Properties
@@ -54,8 +55,8 @@ class FavoritesViewModel: FavoritesViewModelProtocol {
   
   public func deleteMovieFromCoreData(indexPath: IndexPath) {
     let movieToDelete = favoriteItems[indexPath.row]
-    coreDataManager.delete(movieEntity: movieToDelete)
     favoriteItems.remove(at: indexPath.row)
+    coreDataManager.delete(movieEntity: movieToDelete)
   }
 }
 

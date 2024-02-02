@@ -63,6 +63,7 @@ class FavoritesDetailViewController: UIViewController {
       return UIView()
     }
     headerImageView.image = UIImage(data: mediaBackdropImage )
+    // FIXME: -
     return headerImageView
   }
   

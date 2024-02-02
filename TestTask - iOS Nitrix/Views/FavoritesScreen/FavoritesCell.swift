@@ -9,7 +9,7 @@ import UIKit
 
 class FavoritesCell: UITableViewCell {
 
-  // MARK: - Propererties
+  // MARK: - Properties
   static let reuseId = String(describing: FavoritesCell.self)
   
   private let containerView = UIView()

@@ -48,26 +48,36 @@ class CoreDataManager {
   }
   
   public func fetchAllMovies() -> [MovieEntity] {
-      let fetchRequest: NSFetchRequest<MovieEntity> = MovieEntity.fetchRequest()
-      do {
-          let movies = try viewContext.fetch(fetchRequest)
-          var uniqueMovies = [MovieEntity]()
-          var movieIDs = Set<Int32>()
-          movies.forEach {
-              if !movieIDs.contains($0.id) {
-                  uniqueMovies.append($0)
-                  movieIDs.insert($0.id)
-              }
-          }
-          return uniqueMovies
-      } catch {
-          print("Error fetching movies: \(error.localizedDescription)")
-          return []
+    let fetchRequest: NSFetchRequest<MovieEntity> = MovieEntity.fetchRequest()
+    let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+    fetchRequest.sortDescriptors = [sortDescriptor]
+    
+    do {
+      let movies = try viewContext.fetch(fetchRequest)
+      let uniqueMovies = movies.reduce(into: [MovieEntity]()) { result, movie in
+        if !result.contains(where: { $0.id == movie.id }) {
+          result.append(movie)
+        }
       }
+      return uniqueMovies
+    } catch {
+      print("Error fetching movies: \(error.localizedDescription)")
+      return []
+    }
   }
-
+  
   public func delete(movieEntity: MovieEntity) {
-    viewContext.delete(movieEntity)
-    saveContext()
+    let fetchRequest: NSFetchRequest<MovieEntity> = MovieEntity.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "id == %@", movieEntity.id as NSNumber)
+    
+    do {
+      let movies = try viewContext.fetch(fetchRequest)
+      movies.forEach { viewContext.delete($0) }
+      saveContext()
+    } catch {
+      print("Error deleting movie: \(error.localizedDescription)")
+    }
   }
+  
+  
 }

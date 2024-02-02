@@ -17,6 +17,7 @@ protocol MovieListDetailViewModelProtocol {
   func getMovieDetails(completion: @escaping () -> Void)
 }
 
+
 class MovieListDetailViewModel: MovieListDetailViewModelProtocol {
   
   // MARK: - Properties

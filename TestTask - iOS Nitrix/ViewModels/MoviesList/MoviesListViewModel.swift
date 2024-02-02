@@ -18,6 +18,7 @@ protocol MoviesListViewModelProtocol {
   func saveMovieToCoreData(indexPath: IndexPath)
 }
 
+
 class MoviesListViewModel: MoviesListViewModelProtocol {
   
   // MARK: - Properties

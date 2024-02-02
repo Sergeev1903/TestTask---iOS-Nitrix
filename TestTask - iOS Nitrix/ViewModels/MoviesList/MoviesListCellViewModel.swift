@@ -11,6 +11,7 @@ protocol MoviesListCellViewModelProtocol {
   var movieItemPosterURL: URL? { get }
 }
 
+
 struct MoviesListCellViewModel: MoviesListCellViewModelProtocol {
   
   // MARK: - Properties
