@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// TODO: Create Service Protocol for DI, with NetworkManager, DataManager.
 class CoreDataManager {
   static let shared = CoreDataManager()
   

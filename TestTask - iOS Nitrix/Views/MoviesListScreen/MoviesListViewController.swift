@@ -9,6 +9,8 @@ import UIKit
 
 class MoviesListViewController: UIViewController {
   
+  // TODO: encapsulate views -> MoviesListView
+  
   //MARK: - Outlets
   @IBOutlet weak var collectionView: UICollectionView!
   

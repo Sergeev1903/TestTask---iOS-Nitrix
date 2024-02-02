@@ -14,6 +14,7 @@ protocol FavoritesCellViewModelProtocol {
   var favoriteItemReleaseYear: String { get }
 }
 
+
 class FavoritesCellViewModel: FavoritesCellViewModelProtocol {
   
   // MARK: - Properties

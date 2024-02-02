@@ -9,6 +9,8 @@ import UIKit
 
 class FavoritesDetailViewController: UIViewController {
   
+  // TODO: encapsulate views -> FavoritesDetailView
+  
   // MARK: - Properties
   private let tableView = UITableView()
   

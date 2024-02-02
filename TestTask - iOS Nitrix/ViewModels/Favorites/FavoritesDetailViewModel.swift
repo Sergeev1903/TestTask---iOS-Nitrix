@@ -17,6 +17,7 @@ protocol FavoritesDetailViewModelProtocol {
   func getMovieDetails(completion: @escaping () -> Void)
 }
 
+
 class FavoritesDetailViewModel: FavoritesDetailViewModelProtocol {
   
   // MARK: - Properties
@@ -59,6 +60,10 @@ class FavoritesDetailViewModel: FavoritesDetailViewModelProtocol {
     self.service = MoviesService()
   }
   
+  // FIXME: -
+  // TODO: Figure out how to get genres without an additional request
+  // The data must be requested in MoviesListViewModel -> stored with coredata,
+  // and fetch in FavoritesViewModel
   public func getMovieDetails(completion: @escaping () -> Void) {
     service.getMedia(
       endpoint: MovieEndpoint.movieDetails(id: Int(favoriteItem.id)),

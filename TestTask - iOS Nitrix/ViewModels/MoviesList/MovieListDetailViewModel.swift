@@ -60,6 +60,7 @@ class MovieListDetailViewModel: MovieListDetailViewModelProtocol {
   }
   
   // FIXME: -
+  // TODO: Figure out how to get genres without an additional request
   public func getMovieDetails(completion: @escaping () -> Void) {
     service.getMedia(
       endpoint: MovieEndpoint.movieDetails(id: movieItem.id!),

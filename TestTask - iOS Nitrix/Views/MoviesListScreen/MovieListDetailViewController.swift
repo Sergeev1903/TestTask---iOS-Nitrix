@@ -9,6 +9,8 @@ import UIKit
 
 class MovieListDetailViewController: UIViewController {
   
+  // TODO: encapsulate views -> MovieListDetailView
+  
   // MARK: - Properties
   private let tableView = UITableView()
   
