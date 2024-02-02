@@ -47,17 +47,25 @@ class CoreDataManager {
     return movieEntity
   }
   
- public func fetchAllMovies() -> [MovieEntity] {
-    let fetchRequest: NSFetchRequest<MovieEntity> = MovieEntity.fetchRequest()
-    do {
-      let movies = try viewContext.fetch(fetchRequest)
-      return movies
-    } catch {
-      print("Error fetching movies: \(error.localizedDescription)")
-      return []
-    }
+  public func fetchAllMovies() -> [MovieEntity] {
+      let fetchRequest: NSFetchRequest<MovieEntity> = MovieEntity.fetchRequest()
+      do {
+          let movies = try viewContext.fetch(fetchRequest)
+          var uniqueMovies = [MovieEntity]()
+          var movieIDs = Set<Int32>()
+          movies.forEach {
+              if !movieIDs.contains($0.id) {
+                  uniqueMovies.append($0)
+                  movieIDs.insert($0.id)
+              }
+          }
+          return uniqueMovies
+      } catch {
+          print("Error fetching movies: \(error.localizedDescription)")
+          return []
+      }
   }
-  
+
   public func delete(movieEntity: MovieEntity) {
     viewContext.delete(movieEntity)
     saveContext()

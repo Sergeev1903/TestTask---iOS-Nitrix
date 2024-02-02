@@ -152,6 +152,14 @@
 			path = MoviesList;
 			sourceTree = "<group>";
 		};
+		1DA30DC52B6D0387003D7471 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1D1BF54F2B6A9EDF00AC49A5 /* TMDBMovie.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1DBB86132B6A80D7002EDF4C /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +262,7 @@
 		1DEB65682B6A6B45002BDE5C /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				1D1BF54F2B6A9EDF00AC49A5 /* TMDBMovie.swift */,
+				1DA30DC52B6D0387003D7471 /* Model */,
 				1D1BF5592B6AA04400AC49A5 /* Core */,
 				1D1BF55A2B6AA05100AC49A5 /* Endpoints */,
 				1D1BF55B2B6AA07100AC49A5 /* Services */,

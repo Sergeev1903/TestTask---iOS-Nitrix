@@ -13,7 +13,11 @@ class FavoritesViewController: UIViewController {
   private let tableView = UITableView()
   
   // MARK: - ViewModel
-  private var viewModel: FavoritesViewModelProtocol?
+  private var viewModel: FavoritesViewModelProtocol? {
+    didSet {
+      configureViewModel()
+    }
+  }
   
   // MARK: - Init
   init(_ viewModel: FavoritesViewModelProtocol) {
@@ -31,7 +35,6 @@ class FavoritesViewController: UIViewController {
     super.viewDidLoad()
     setUpTableView()
     configureNavigationBar()
-    configureViewModel()
   }
   
   override func viewWillAppear(_ animated: Bool) {

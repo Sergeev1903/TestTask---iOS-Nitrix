@@ -15,9 +15,7 @@ class MoviesListViewController: UIViewController {
   // MARK: - ViewModel
   var viewModel: MoviesListViewModelProtocol? {
     didSet {
-      viewModel?.getMovies {
-        self.collectionView.reloadData()
-      }
+      configureViewModel()
     }
   }
   
@@ -26,6 +24,11 @@ class MoviesListViewController: UIViewController {
     super.viewDidLoad()
     setUpCollectionView()
     setUpLongPressGesture()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    configureViewModel()
   }
   
   // MARK: - Methods
@@ -75,6 +78,12 @@ class MoviesListViewController: UIViewController {
       hudView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       hudView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200)
     ])
+  }
+  
+  private func configureViewModel() {
+    viewModel?.getMovies {
+      self.collectionView.reloadData()
+    }
   }
   
 }
